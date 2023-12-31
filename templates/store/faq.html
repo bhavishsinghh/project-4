@@ -1,0 +1,337 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+.wrapper{
+    max-width: 100%;
+    margin: auto;
+}
+.wrapper > p, 
+.wrapper > h1 {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+.wrapper > h1{
+    letter-spacing: 3px;
+}
+.accordian{
+      background-color: white;
+      color: rgba(0, 0, 0, 0.8);
+      cursor: pointer;
+      font-size: 1.2rem;
+      width: 100%;
+      padding: 2rem 2.5rem;
+      border: none;
+      outline: none;
+      transition: 0.4s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+}
+.accordian i{
+    font-size: 1.6rem;
+}
+.active,.accordian:hover{
+     background-color: #f1f7f5;
+}
+.pannel{
+    padding: 0 2rem 2.5rem 2rem;
+    background-color: white;
+    overflow: hidden;
+    background-color: #f1f7f5;
+    display: none;
+}
+.pannel p{
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 1.2rem;
+      line-height: 1.4;
+}
+.faq{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+}
+.faq.active{
+    border: none;
+}
+</style>
+<div class="container">
+    <section class="hero pb-3 bg-cover bg-center d-flex align-items-center"style="background: url({% static 'img/western.jpg' %})">
+
+      <div class="container py-5">
+        <div class="row px-4 px-lg-5">
+          <div class="col-lg-6">
+            <p class="text-muted small text-uppercase mb-2"  style="color: rgb(0, 0, 0);">New Inspiration 2023</p>
+            <h1 class="h2 text-uppercase mb-3">FREQUENTLY ASKED QUESTIONS</h1><a class="btn btn-dark" href="{% url 'store:all-categories' %}">Browse collections</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pt-5">
+        <header class="text-center">
+            <h1 class="Zena">ZENA <h6>(BECAUSE YOU ARE SO SPECIAL)</h6></h1>
+            <hr>
+          <div class="wrapper">
+          <h1>FREQUENTLY ASKED QUESTIONS</h1>
+           <div class="faq">
+            <button class="accordian">
+                What makes your clothing sustainable?
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pannel">
+                <p>Our clothing is sustainable through the use of eco-friendly materials like organic cotton, recycled fabrics, and ethical production practices that minimize environmental impact.</p>
+                </div>
+            </div>
+            
+            <div class="faq">
+                <button class="accordian">
+                    Where are your products made?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="pannel">
+                    <p>We prioritize local and ethical manufacturing. Our products are made in [specific locations] under fair labor conditions.</p>
+                    </div>
+                </div>
+
+                <div class="faq">
+                    <button class="accordian">
+                        What steps do you take to ensure fair labor practices?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="pannel">
+                        <p>We work closely with our suppliers to ensure fair wages, safe working conditions, and ethical treatment of workers throughout our supply chain.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq">
+                        <button class="accordian">
+                            Are your packaging materials environmentally friendly?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="pannel">
+                            <p>Yes, we use recycled and recyclable materials for our packaging. We are also exploring more sustainable options such as compostable and biodegradable packaging.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq">
+                            <button class="accordian">
+                                How do you encourage sustainability in the fashion industry?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="pannel">
+                                <p>We actively promote sustainability by raising awareness, implementing eco-friendly practices, and collaborating with like-minded partners. Our goal is to inspire positive change in the fashion industry.
+                                </p>
+                                </div>
+                            </div>
+
+                            <div class="faq">
+                                <button class="accordian">
+                                    What is your return policy?
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                                <div class="pannel">
+                                    <p> Our return policy allows for returns within [number] days of purchase. We also encourage customers to consider our take-back program for recycling or upcycling old garments.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq">
+                                    <button class="accordian">
+                                        Do you offer plus-size options?
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </button>
+                                    <div class="pannel">
+                                        <p>Yes, we are committed to inclusivity. Our sizing range is designed to cater to a diverse range of body types.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq">
+                                        <button class="accordian">
+                                            How do you ensure the quality of your products?
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </button>
+                                        <div class="pannel">
+                                            <p>We prioritize quality in our design and manufacturing processes. Our products undergo thorough testing to ensure durability and longevity.</p>
+                                            </div>
+                                        </div>
+
+        </div> 
+        </header>
+        <body>
+            <script>
+                var acc=document.getElementsByClassName("accordian");
+                var i;
+                for(i = 0; i < acc.length ; i++){
+                    acc[i].addEventListener("click", function () {
+                        this.classList.toggle("active");
+                        this.parentElement.classList.toggle("active");
+
+                        var pannel = this.nextElementSibling;
+                        if(pannel.style.display === "block"){
+                            pannel.style.display = "none";
+                        }else{
+                            pannel.style.display = "block";
+                        }
+                    });
+                }
+            </script>
+        </body>
+        <div class="row">
+        {% if categories %}
+          {% for category in categories %}
+
+            <div class="col-md-4 mb-4 mb-md-0">
+              <a class="category-item" href="{% url 'store:category-products' category.slug %}">
+                {% if category.category_image %}
+                  <img class="img-fluid" src="{{ category.category_image.url }}" alt="{{ category.title }}">
+                  {% else %}
+                  <img class="img-fluid" src="{% static 'img/cat-img-1.jpg' %}" alt="{{ category.title }}">
+                {% endif %}
+                <strong class="category-item-title">{{ category.title }}</strong>
+              </a>
+            </div>
+          
+          {% endfor %}
+        {% endif %}
+        </div>
+      </section>
+
+
+      <!-- TRENDING PRODUCTS-->
+      <section class="py-5">
+        <header>
+          <p class="small text-muted small text-uppercase mb-1">Made the hard way</p>
+          <h2 class="h5 text-uppercase mb-4">Top trending products</h2>
+        </header>
+        <div class="row">
+
+          {% if products %}
+            {% for product in products %}
+            
+              <!-- PRODUCT-->
+              <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="product text-center">
+                  <div class="position-relative mb-3">
+
+                    <div class="badge text-white badge-"></div>
+                    
+                    <a class="d-block" href="{% url 'store:product-detail' product.slug %}">
+                      {% if product.product_image %}
+                        <img class="img-fluid w-100" src="{{ product.product_image.url }}" alt="{{product.title}}">
+                      {% else %}
+                        <img class="img-fluid w-100" src="{% static 'img/product-1.jpg' %}" alt="{{product.title}}">
+                      {% endif %}
+                    </a>
+
+                    <div class="product-overlay">
+                      <ul class="mb-0 list-inline">
+                        <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="list-inline-item m-0 p-0">
+                          {% comment %} <a class="btn btn-sm btn-dark" href="{% url 'store:add-to-cart' %}">Add to cart</a> {% endcomment %}
+
+                          <form action="{% url 'store:add-to-cart' %}">
+                            <input type="hidden" name="prod_id" value="{{product.id}}" id="product_id">
+                            <button type="submit" class="btn btn-sm btn-dark">Add to Cart</button>
+                          </form>
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <h6> <a class="reset-anchor" href="detail.html">{{ product.title }}</a></h6>
+                  <p class="small text-muted">₹{{product.price}}</p>
+                </div>
+              </div>
+
+            {% endfor %}
+          {% endif %}
+
+          
+
+        </div>
+      </section>
+
+
+      <!-- SERVICES-->
+      <section class="py-5 bg-light">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-lg-4 mb-3 mb-lg-0">
+              <div class="d-inline-block">
+                <div class="media align-items-end">
+                  <svg class="svg-icon svg-icon-big svg-icon-light">
+                    <use xlink:href="#delivery-time-1"> </use>
+                  </svg>
+                  <div class="media-body text-left ml-3">
+                    <h6 class="text-uppercase mb-1">Free shipping</h6>
+                    <p class="text-small mb-0 text-muted">Free shipping worlwide</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 mb-3 mb-lg-0">
+              <div class="d-inline-block">
+                <div class="media align-items-end">
+                  <svg class="svg-icon svg-icon-big svg-icon-light">
+                    <use xlink:href="#helpline-24h-1"> </use>
+                  </svg>
+                  <div class="media-body text-left ml-3">
+                    <h6 class="text-uppercase mb-1">24 x 7 service</h6>
+                    <p class="text-small mb-0 text-muted">Free shipping worlwide</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="d-inline-block">
+                <div class="media align-items-end">
+                  <svg class="svg-icon svg-icon-big svg-icon-light">
+                    <use xlink:href="#label-tag-1"> </use>
+                  </svg>
+                  <div class="media-body text-left ml-3">
+                    <h6 class="text-uppercase mb-1">Festival offer</h6>
+                    <p class="text-small mb-0 text-muted">Free shipping worlwide</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- NEWSLETTER-->
+      <section class="py-5">
+        <div class="container p-0">
+          <div class="row">
+            <div class="col-lg-6 mb-3 mb-lg-0">
+              <h5 class="text-uppercase">Let's be friends!</h5>
+              <p class="text-small text-muted mb-0"></p>
+            </div>
+            <div class="col-lg-6">
+              <form action="#">
+                <div class="input-group flex-column flex-sm-row mb-3">
+                  <input class="form-control form-control-lg py-3" type="email" placeholder="Enter your email address" aria-describedby="button-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-dark btn-block" id="button-addon2" type="submit">Subscribe</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+{% endblock content %}
+
